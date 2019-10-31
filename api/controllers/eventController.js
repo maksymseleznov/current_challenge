@@ -1,4 +1,3 @@
-// const mongoose = require('mongoose');
 const Event = require('../models/eventModel');
 const uuid = require('uuid/v4');
 
