@@ -5,7 +5,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
-const router = require('./routes/eventRoutes.js');
+const router = require('./api/routes/eventRoutes.js');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

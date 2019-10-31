@@ -5,7 +5,9 @@ const uuid = require('uuid/v4');
 // add an event
 const addEvent = async (req, res) => {
  const { userId, name } = req.query;
+ // using npm module to randomly generate a string
  let visitId = uuid();
+ // removing all dashes (-) from string
  visitId = visitId.replace(/-/gi, '');
  const newEvent = new Event({ 
   userId, 
@@ -30,7 +32,7 @@ const getEventByVisitId = (visitId, res) => {
    res.send(err);
    return;
   } else {
-   res.send(data);
+   res.json(data);
    return;
   }
  });

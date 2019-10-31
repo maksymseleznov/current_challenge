@@ -2,10 +2,10 @@
   "name": "current_challenge",
   "version": "1.0.0",
   "description": "A simple API to track user's visits to different locations\"",
-  "main": "api/server.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon api/server.js"
+    "start": "node server.js"
   },
   "author": "Alon Bibring",
   "license": "ISC",
