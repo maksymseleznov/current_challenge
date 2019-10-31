@@ -41,7 +41,7 @@ const getEventByVisitId = (visitId, res) => {
 
 // get events by userId and search string
 const findEventByUserIdAndSearchString = (searchString, userId, res) => {
- Event.find({ userId }, async (err, data) => {
+ Event.find({ userId }, null, { limit: 5, sort: {'created_at': -1} }, async (err, data) => {
   if (err) {
    res.json(err);
    return;
