@@ -11,6 +11,8 @@ router.get('/', (req, res) => {
   getEventByVisitId(req.query.visitId, res)
  } else if (req.query.searchString && req.query.userId) {
   findEventByUserIdAndSearchString(req.query.searchString, req.query.userId, res)
+ } else {
+  res.send('Please enter correct fields')
  }
 });
 module.exports = router;
