@@ -2,10 +2,10 @@
   "name": "current_challenge",
   "version": "1.0.0",
   "description": "A simple API to track user's visits to different locations\"",
-  "main": "server.js",
+  "main": "api/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon api/server.js"
   },
   "author": "Alon Bibring",
   "license": "ISC",
@@ -13,6 +13,12 @@
     "nodemon": "^1.19.4"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "body-parser": "^1.19.0",
+    "circular-json": "^0.5.9",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.3",
+    "mongoose": "^5.7.7",
+    "uuid": "^3.3.3"
   }
 }
