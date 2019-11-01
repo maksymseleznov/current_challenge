@@ -26,7 +26,7 @@ const addEvent = async (req, res) => {
 
 // retrieve event by visit id
 const getEventByVisitId = (visitId, res) => {
- Event.find({ visitId }, (err, data) => {
+ Event.find({ visitId }, 'userId name visitId', (err, data) => {
   if (err) {
    res.send({ Error: err });
    return;
