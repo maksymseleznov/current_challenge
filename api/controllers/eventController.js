@@ -3,12 +3,16 @@ const uuid = require('uuid/v4');
 // const JSON = require('circular-json');
 // add an event
 const addEvent = (req, res) => {
-  let data = Object.keys(req.body)[0];
-  data = data.replace(/\\|\//g,''); // remove all slashes from object
-  data = JSON.parse(JSON.stringify(data)); // stringify and then parse
-  data = JSON.parse(data); // must parse twice otherwise remains a string
-
- const { userId, name } = data;
+  // let data = Object.keys(req.body)[0];
+  // data = data.replace(/\\|\//g,''); // remove all slashes from object
+  // data = JSON.parse(JSON.stringify(data)); // stringify and then parse
+  // // data = JSON.parse(data); // must parse twice otherwise remains a string
+  // console.log('REQ.BODY', req.body);
+  // console.log('REQ.params', req.params);
+  // console.log('REQ.query', req.query);
+  // console.log('DATA', data);
+  // console.log('typeof DATA', typeof data);
+ const { userId, name } = req.body;
 
  // using npm module to randomly generate a string
  let visitId = uuid();
