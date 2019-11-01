@@ -1,7 +1,13 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
-const mongooseOptions = { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false };
-mongoose.connect(process.env.MONGO_URL, mongooseOptions)
+
+const mongooseOptions = { 
+ useNewUrlParser: true,
+ useUnifiedTopology: true,
+ useFindAndModify: false
+};
+
+mongoose.connect(process.env.MONGO_URL, mongooseOptions);
 
 const eventSchema = mongoose.Schema({
  userId: {
@@ -24,4 +30,5 @@ const eventSchema = mongoose.Schema({
 });
 
 const Event = mongoose.model('Event', eventSchema);
+
 module.exports = Event;

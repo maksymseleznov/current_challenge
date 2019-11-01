@@ -1,4 +1,4 @@
-const Event = require('../models/eventModel');
+const Event = require('../models/eventModel.js');
 const uuid = require('uuid/v4');
 
 // add an event
@@ -16,7 +16,7 @@ const addEvent = async (req, res) => {
  
  newEvent.save((error) => {
   if (error) {
-   res.send(JSON.stringify(error));
+   res.send({ Error: err });
    return;
   }
   res.send({ visitId: `${visitId}`});
@@ -28,7 +28,7 @@ const addEvent = async (req, res) => {
 const getEventByVisitId = (visitId, res) => {
  Event.find({ visitId }, (err, data) => {
   if (err) {
-   res.send(err);
+   res.send({ Error: err });
    return;
   } else {
    res.json(data);

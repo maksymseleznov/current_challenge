@@ -6,13 +6,16 @@ const {
 } = require("../controllers/eventController.js");
 
 router.post('/', addEvent);
+
 router.get('/', (req, res) => {
- if (req.query.visitId) {
-  getEventByVisitId(req.query.visitId, res)
- } else if (req.query.searchString && req.query.userId) {
-  findEventByUserIdAndSearchString(req.query.searchString, req.query.userId, res)
+ const { visitId, searchString, userId } = req.query;
+ if (visitId) {
+  getEventByVisitId(visitId, res);
+ } else if (searchString && userId) {
+  findEventByUserIdAndSearchString(searchString, userId, res)
  } else {
-  res.send('Please enter correct fields')
+  res.send('Please enter correct fields in query string');
  }
 });
+
 module.exports = router;
