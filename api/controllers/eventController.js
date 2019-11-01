@@ -40,12 +40,12 @@ const getEventByVisitId = (visitId, res) => {
 
 // get events by userId and search string
 const findEventByUserIdAndSearchString = (searchString, userId, res) => {
- Event.find({ userId }, null, { limit: 5, sort: {'created_at': -1} }, async (err, data) => {
+ Event.find({ userId }, 'userId name visitId', { limit: 5, sort: {'created_at': -1} }, (err, data) => {
   if (err) {
    res.json(err);
    return;
   } else {
-    const newData = await data.filter(event => {
+    const newData = data.filter(event => {
      const venueName = event.name.toLowerCase()
      const searchTerm = searchString.toLowerCase()
      return venueName.includes(searchTerm)
