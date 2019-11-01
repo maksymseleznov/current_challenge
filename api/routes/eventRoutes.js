@@ -4,10 +4,12 @@ const {
  getEventByVisitId, 
  findEventByUserIdAndSearchString
 } = require("../controllers/eventController.js");
+const { contentTypeCheck } = require('../middleware/middleware.js');
 
-router.post('/', addEvent);
+// add middleware to check content-type is application/json
+router.post('/visit', contentTypeCheck, addEvent);
 
-router.get('/', (req, res) => {
+router.get('/visit', (req, res) => {
  const { visitId, searchString, userId } = req.query;
  if (visitId) {
   getEventByVisitId(visitId, res);

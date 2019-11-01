@@ -4,22 +4,26 @@ const uuid = require('uuid/v4');
 // add an event
 const addEvent = async (req, res) => {
  const { userId, name } = req.query;
+
  // using npm module to randomly generate a string
  let visitId = uuid();
  // removing all dashes (-) from string
  visitId = visitId.replace(/-/gi, '');
+
+ // create new event instance with userId, name and generated visitId
  const newEvent = new Event({ 
   userId, 
   name,
   visitId
  });
  
- newEvent.save((error) => {
-  if (error) {
-   res.send({ Error: err });
+ newEvent.save((err) => {
+  if (err) {
+  const error = err.errors && err.errors.name
+   res.json({ Error: JSON.stringify(error) });
    return;
   }
-  res.send({ visitId: `${visitId}`});
+  res.json({ visitId });
   return;
  });
 };
@@ -28,7 +32,7 @@ const addEvent = async (req, res) => {
 const getEventByVisitId = (visitId, res) => {
  Event.find({ visitId }, 'userId name visitId', (err, data) => {
   if (err) {
-   res.send({ Error: err });
+   res.json({ Error: err });
    return;
   } else {
    res.json(data);
@@ -46,9 +50,10 @@ const findEventByUserIdAndSearchString = (searchString, userId, res) => {
    return;
   } else {
     const newData = data.filter(event => {
-     const venueName = event.name.toLowerCase()
-     const searchTerm = searchString.toLowerCase()
-     return venueName.includes(searchTerm)
+      // lowercase searchterm and venue name to deal with capitilization differences
+      const venueName = event.name.toLowerCase()
+      const searchTerm = searchString.toLowerCase()
+      return venueName.includes(searchTerm)
    });
    res.json(newData);
    return;
