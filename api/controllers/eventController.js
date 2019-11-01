@@ -1,6 +1,5 @@
 const Event = require('../models/eventModel.js');
 const uuid = require('uuid/v4');
-// const JSON = require('circular-json');
 // add an event
 const addEvent = (req, res) => {
  const { userId, name } = req.body;
