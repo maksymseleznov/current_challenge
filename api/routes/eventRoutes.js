@@ -9,7 +9,6 @@ const {
 router.post('/visit', addEvent);
 
 router.get('/visit', (req, res) => {
- console.log(req.query)
  const { visitId, searchString, userId } = req.query;
  if (visitId) {
   getEventByVisitId(visitId, res);
