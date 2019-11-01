@@ -1,9 +1,14 @@
 const Event = require('../models/eventModel.js');
 const uuid = require('uuid/v4');
-
+// const JSON = require('circular-json');
 // add an event
-const addEvent = async (req, res) => {
- const { userId, name } = req.query;
+const addEvent = (req, res) => {
+  let data = Object.keys(req.body)[0];
+  data = data.replace(/\\|\//g,''); // remove all slashes from object
+  data = JSON.parse(JSON.stringify(data)); // stringify and then parse
+  data = JSON.parse(data); // must parse twice otherwise remains a string
+
+ const { userId, name } = data;
 
  // using npm module to randomly generate a string
  let visitId = uuid();
