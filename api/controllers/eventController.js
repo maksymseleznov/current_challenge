@@ -3,7 +3,6 @@ const uuid = require('uuid/v4');
 // add an event
 const addEvent = async (req, res) => {
  const { userId, name } = req.body;
-console.log('content-type', req.headers['content-type']);
  // using npm module to randomly generate a string
  let visitId = uuid();
 
