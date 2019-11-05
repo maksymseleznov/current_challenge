@@ -5,7 +5,6 @@ const {
  findEventByUserIdAndSearchString
 } = require("../controllers/eventController.js");
 
-// add middleware to check content-type is application/json
 router.post('/visit', addEvent);
 
 router.get('/visit', async (req, res) => {
@@ -16,11 +15,13 @@ router.get('/visit', async (req, res) => {
  if (visitId) {
   event = await getEventByVisitId(visitId, res);
   return res.json(event);
+  
   // check if querying using searchString and userId
  } else if (searchString && userId) {
   event = await findEventByUserIdAndSearchString(searchString, userId, res);
   return res.json(event);
  } else {
+  
   // return Error string if not using visitId or userId/searchString
   return res.send('Please enter correct fields in query string');
  }
