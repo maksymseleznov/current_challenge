@@ -6,7 +6,6 @@ const bodyParser = require('body-parser');
 const router = require('./api/routes/eventRoutes.js');
 const port = process.env.PORT || 3000;
 
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // set up routes

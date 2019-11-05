@@ -8,14 +8,21 @@ const {
 // add middleware to check content-type is application/json
 router.post('/visit', addEvent);
 
-router.get('/visit', (req, res) => {
+router.get('/visit', async (req, res) => {
  const { visitId, searchString, userId } = req.query;
+ let event;
+
+ // check if querying with visitId
  if (visitId) {
-  getEventByVisitId(visitId, res);
+  event = await getEventByVisitId(visitId, res);
+  return res.json(event);
+  // check if querying using searchString and userId
  } else if (searchString && userId) {
-  findEventByUserIdAndSearchString(searchString, userId, res)
+  event = await findEventByUserIdAndSearchString(searchString, userId, res);
+  return res.json(event);
  } else {
-  res.send('Please enter correct fields in query string');
+  // return Error string if not using visitId or userId/searchString
+  return res.send('Please enter correct fields in query string');
  }
 });
 
